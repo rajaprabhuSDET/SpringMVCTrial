@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.solartis.spring.model.User;
 import com.solartis.spring.model.UserProfile;
-import com.solartis.spring.service.DataTableService;
 import com.solartis.spring.service.UserProfileService;
 import com.solartis.spring.service.UserService;
 
@@ -35,9 +34,6 @@ import com.solartis.spring.service.UserService;
 @SessionAttributes("roles")
 public class AppController {
 
-	@Autowired
-	DataTableService dataService;
-	
 	@Autowired
 	UserService userService;
 	
@@ -66,15 +62,6 @@ public class AppController {
 		return "userslist";
 	}
 
-	@RequestMapping(value = { "/wholeTable" }, method = RequestMethod.GET)
-	public String wholeTable(ModelMap model) {
-
-		model.addAttribute("tableData", dataService.tableData());
-		model.addAttribute("metaData", dataService.metaData());
-		model.addAttribute("loggedinuser", getPrincipal());
-		return "wholeTable";
-	}
-	
 	/**
 	 * This method will provide the medium to add a new user.
 	 */

@@ -17,7 +17,6 @@ import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-@SuppressWarnings("serial")
 @Entity
 @Table(name="APP_USER")
 public class User implements Serializable{
