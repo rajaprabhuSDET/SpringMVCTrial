@@ -10,6 +10,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name="PERSISTENT_LOGINS")
 public class PersistentLogin implements Serializable{

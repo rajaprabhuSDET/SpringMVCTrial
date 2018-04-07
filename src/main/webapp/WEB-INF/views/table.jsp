@@ -1,3 +1,6 @@
+<%@ page import="java.util.*"%>
+<%@ page import="java.util.Map.Entry"%>
+<%@ page import="com.solartis.spring.controller.AppController"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page isELIgnored="false"%>
@@ -26,11 +29,11 @@
 			<table class="table table-hover">
 				<thead>
 					<tr>
-
-						<th>Firstname</th>
-						<th>Lastname</th>
-						<th>Email</th>
-						<th>SSO ID</th>
+						<%String[] ss =(String[]) pageContext.getAttribute("meta"); 
+						for(int i=0; i<ss.length;i++)
+						{
+							%><th><%System.out.println(ss[i]);%></th><%
+						}%>
 						<sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
 							<th width="100"></th>
 						</sec:authorize>
@@ -42,12 +45,23 @@
 				</thead>
 				<tbody>
 					<c:forEach items="${users}" var="user">
+						<c:set var="userr" value="${users}" />
 						<tr>
-							<% %>
-							<td>${user.firstName}</td>
-							<td>${user.lastName}</td>
-							<td>${user.email}</td>
-							<td>${user.ssoId}</td>
+							<%
+								LinkedHashMap<Integer, LinkedHashMap<String, String>> table = (LinkedHashMap<Integer, LinkedHashMap<String, String>>) pageContext
+											.getAttribute("userr");
+									for (Entry<Integer, LinkedHashMap<String, String>> entry : table.entrySet()) {
+										LinkedHashMap<String, String> rowInputColVerify = entry.getValue();
+										for (Entry entrry : rowInputColVerify.entrySet()) {
+							%><td>
+								<%
+									entrry.getValue();
+								%>
+							</td>
+							<%
+								}
+									}
+							%>
 							<sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
 								<td><a href="<c:url value='/edit-user-${user.ssoId}' />"
 									class="btn btn-success custom-width">edit</a></td>

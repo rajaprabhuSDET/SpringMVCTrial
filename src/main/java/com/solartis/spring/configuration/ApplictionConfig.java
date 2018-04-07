@@ -19,7 +19,7 @@ import com.solartis.spring.converter.RoleToUserProfileConverter;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "com.solartis.spring")
+@ComponentScan(basePackages = "com.solartis.spring.*")
 public class ApplictionConfig extends WebMvcConfigurerAdapter{
 	
  // equivalents for <mvc:resources/> tags

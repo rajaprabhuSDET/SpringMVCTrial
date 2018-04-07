@@ -1,5 +1,6 @@
 package com.solartis.spring.controller;
 
+import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
@@ -65,14 +66,15 @@ public class AppController {
 		return "userslist";
 	}
 
-	@RequestMapping(value = { "/dataTable" }, method = RequestMethod.GET)
-	public String dataTable(ModelMap model) throws DatabaseException {
+	@RequestMapping(value = { "/datatable" }, method = RequestMethod.GET)
+	public String dataTable(ModelMap model) throws DatabaseException, SQLException {
 
 		db.ConnectionSetup();
-		LinkedHashMap<Integer, LinkedHashMap<String, String>> users = db.GetDataObjects("");
+		LinkedHashMap<Integer, LinkedHashMap<String, String>> users = db.GetDataObjects("Select * from MelActual");
 		model.addAttribute("users", users);
+		model.addAttribute("meta",db.getColumnNames());
 		model.addAttribute("loggedinuser", getPrincipal());
-		return "dataTable";
+		return "table";
 	}
 
 	/**

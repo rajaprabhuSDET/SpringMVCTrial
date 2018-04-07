@@ -81,6 +81,20 @@ public class DatabaseOperation {
 		conn = null;
 	}
 
+	public String[] getColumnNames() throws DatabaseException {
+		String[] columnNames = null;
+		try {
+			columnNames = new String[meta.getColumnCount()];
+			for (int columnIterator = 1; columnIterator <= meta.getColumnCount(); columnIterator++) {
+				columnNames[columnIterator - 1] = meta.getColumnName(columnIterator);
+			}
+		} catch (Exception e) {
+			throw new DatabaseException("PROBLEM WITH RESULT-SET OBTAINED FROM DB", e);
+		}
+		return columnNames;
+
+	}
+
 	public LinkedHashMap<Integer, LinkedHashMap<String, String>> GetDataObjects(String query) throws DatabaseException {
 		this.query = query;
 		LinkedHashMap<String, String> row = null;
