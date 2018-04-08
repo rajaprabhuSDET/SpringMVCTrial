@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
@@ -37,6 +39,8 @@ import com.solartis.spring.service.UserService;
 @RequestMapping("/")
 @SessionAttributes("roles")
 public class AppController {
+
+	static final Logger logger = LoggerFactory.getLogger(AppController.class);
 
 	DatabaseOperation db;
 	@Autowired
@@ -68,11 +72,15 @@ public class AppController {
 
 	@RequestMapping(value = { "/datatable" }, method = RequestMethod.GET)
 	public String dataTable(ModelMap model) throws DatabaseException, SQLException {
+		db = new DatabaseOperation();
 
 		db.ConnectionSetup();
-		LinkedHashMap<Integer, LinkedHashMap<String, String>> users = db.GetDataObjects("Select * from MelActual");
+		LinkedHashMap<Integer, LinkedHashMap<String, String>> tableContent = db.GetDataObjects("Select * from MelActual");
+		System.out.println(tableContent);
+		List<User> users = userService.findAllUsers();
 		model.addAttribute("users", users);
-		model.addAttribute("meta",db.getColumnNames());
+		model.addAttribute("tableContent", tableContent);
+		model.addAttribute("meta", db.getColumnNames());
 		model.addAttribute("loggedinuser", getPrincipal());
 		return "table";
 	}
@@ -86,6 +94,8 @@ public class AppController {
 		model.addAttribute("user", user);
 		model.addAttribute("edit", false);
 		model.addAttribute("loggedinuser", getPrincipal());
+		logger.info("user", user);
+		logger.info("loggedinuser", getPrincipal());
 		return "registration";
 	}
 

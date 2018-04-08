@@ -8,14 +8,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.LinkedHashMap;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
-
 import com.solartis.spring.exception.DatabaseException;
 
 public class DatabaseOperation {
-	@Autowired
-	private Environment environment;
 	private static Connection conn = null;
 	private static String JDBC_DRIVER = null;
 	private static String DB_URL = null;
@@ -29,19 +24,25 @@ public class DatabaseOperation {
 	protected ResultSetMetaData meta = null;
 
 	public void ConnectionSetup() throws DatabaseException {
-		JDBC_DRIVER = environment.getRequiredProperty("jdbc.driverClassName");
-		DB_URL = environment.getRequiredProperty("jdbc.url");
-		USER = environment.getRequiredProperty("jdbc.user");
-		PASS = environment.getRequiredProperty("jdbc.pass");
+		try {
+		JDBC_DRIVER = "com.mysql.jdbc.Driver";
+		DB_URL = "jdbc:mysql://localhost:3306/general";
+		USER = "root";
+		PASS = "winthegame";
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		if (conn == null) {
 			try {
 				Class.forName(JDBC_DRIVER);
 			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
 				throw new DatabaseException("ERROR IN JDBC_DRIVER : " + JDBC_DRIVER, e);
 			}
 			try {
 				conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			} catch (SQLException e) {
+				e.printStackTrace();
 				throw new DatabaseException("ERROR IN DB - URL / USERNAME / PASSWORD", e);
 			}
 		}
@@ -86,9 +87,10 @@ public class DatabaseOperation {
 		try {
 			columnNames = new String[meta.getColumnCount()];
 			for (int columnIterator = 1; columnIterator <= meta.getColumnCount(); columnIterator++) {
-				columnNames[columnIterator - 1] = meta.getColumnName(columnIterator);
+				columnNames[columnIterator-1] = meta.getColumnName(columnIterator);
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new DatabaseException("PROBLEM WITH RESULT-SET OBTAINED FROM DB", e);
 		}
 		return columnNames;
