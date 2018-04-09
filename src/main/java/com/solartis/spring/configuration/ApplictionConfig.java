@@ -74,7 +74,7 @@ public class ApplictionConfig extends WebMvcConfigurerAdapter{
     @Bean
 	public MessageSource messageSource() {
 	    ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-	    messageSource.setBasename("messages");
+	    messageSource.setBasename("properties/messages");
 	    return messageSource;
 	}
     

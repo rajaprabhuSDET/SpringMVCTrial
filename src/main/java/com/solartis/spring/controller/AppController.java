@@ -76,7 +76,6 @@ public class AppController {
 
 		db.ConnectionSetup();
 		LinkedHashMap<Integer, LinkedHashMap<String, String>> tableContent = db.GetDataObjects("Select * from MelActual");
-		System.out.println(tableContent);
 		List<User> users = userService.findAllUsers();
 		model.addAttribute("users", users);
 		model.addAttribute("tableContent", tableContent);
