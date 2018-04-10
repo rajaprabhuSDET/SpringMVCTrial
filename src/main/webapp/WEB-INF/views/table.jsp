@@ -21,7 +21,7 @@
 		<div class="panel panel-default">
 			<!-- Default panel contents -->
 			<div class="panel-heading">
-				<span class="lead">List of Users </span>
+				<span class="lead">MEL Table </span>
 			</div>
 			<table class="table table-hover">
 				<c:set var="metaa" value="${meta}" />
