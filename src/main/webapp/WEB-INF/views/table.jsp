@@ -12,9 +12,11 @@ function SyncScroll(phoneFaceId) {
   var face2 = document.getElementById("phoneface2");
   if (phoneFaceId=="phoneface1") {
     face2.scrollTop = face1.scrollTop;
+    face2.scrollLeft = face1.scrollLeft;
   }
   else {
     face1.scrollTop = face2.scrollTop;
+    face1.scrollLeft = face2.scrollLeft;
   }
 }
 </script>

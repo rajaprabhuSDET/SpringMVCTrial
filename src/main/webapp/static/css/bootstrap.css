@@ -3337,6 +3337,12 @@ textarea.form-group-lg .form-control, select[multiple].form-group-lg .form-contr
 	background-color: #fff;
 	border-color: #ccc;
 }
+.btn-default1 {
+	color: #333;
+	background-color: #fff;
+	border-color: #ccc;
+	width:100px;
+}
 
 .btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active,
 	.btn-default.active, .open>.dropdown-toggle.btn-default {
