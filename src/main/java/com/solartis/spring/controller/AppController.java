@@ -41,8 +41,8 @@ import com.solartis.spring.service.UserService;
 public class AppController {
 
 	static final Logger logger = LoggerFactory.getLogger(AppController.class);
-
-	DatabaseOperation db;
+	@Autowired
+	DatabaseOperation databaseOperation;
 	@Autowired
 	UserService userService;
 
@@ -81,14 +81,14 @@ public class AppController {
 
 	@RequestMapping(value = { "/datatable" }, method = RequestMethod.GET)
 	public String dataTable(ModelMap model) throws DatabaseException, SQLException {
-		db = new DatabaseOperation();
+		//databaseOperation = new DatabaseOperation();
 
-		db.ConnectionSetup();
-		LinkedHashMap<Integer, LinkedHashMap<String, String>> tableContent = db.GetDataObjects("Select * from MelActual");
+		databaseOperation.ConnectionSetup();
+		LinkedHashMap<Integer, LinkedHashMap<String, String>> tableContent = databaseOperation.GetDataObjects("Select * from MelActual");
 		List<User> users = userService.findAllUsers();
 		model.addAttribute("users", users);
 		model.addAttribute("tableContent", tableContent);
-		model.addAttribute("meta", db.getColumnNames());
+		model.addAttribute("meta", databaseOperation.getColumnNames());
 		model.addAttribute("loggedinuser", getPrincipal());
 		return "table";
 	}

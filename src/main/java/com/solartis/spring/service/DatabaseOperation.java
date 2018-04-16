@@ -8,8 +8,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.LinkedHashMap;
 
-import com.solartis.spring.exception.DatabaseException;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.solartis.spring.exception.DatabaseException;
+@Service("databaseOperation")
+@Transactional
 public class DatabaseOperation {
 	private static Connection conn = null;
 	private static String JDBC_DRIVER = null;
