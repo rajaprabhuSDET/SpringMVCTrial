@@ -67,6 +67,18 @@ public class AppController {
 		return "entrydashboard";
 	}
 	
+	@RequestMapping(value = { "/meldetails" }, method = RequestMethod.GET)
+	public String melDetails(ModelMap model) {
+
+		User user = new User();
+		model.addAttribute("user", user);
+		model.addAttribute("edit", false);
+		model.addAttribute("loggedinuser", getPrincipal());
+		logger.info("user", user);
+		logger.info("loggedinuser", getPrincipal());
+		return "meldetails";
+	}
+	
 	/**
 	 * This method will list all existing users.
 	 */

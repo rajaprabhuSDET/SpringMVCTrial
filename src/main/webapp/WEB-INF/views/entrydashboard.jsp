@@ -20,8 +20,10 @@
 		<%@include file="authheader.jsp"%>
 		<div class="panel panel-default">
 			<!-- Default panel contents -->
-			<div class="form-actions">
-				<input type="submit" class="btn btn-block btn-primary btn-default1"	value="MEL Test Automation"> 
+			<div>
+				<div class="btn btn-block btn-primary btn-default1">
+		 		<a href="<c:url value='/meldetails' />">MEL Test Automation</a>
+		 	</div>
 				<input type="submit" class="btn btn-block btn-primary btn-default1" value="Starr-SGL Test Automation">
 			</div>
 

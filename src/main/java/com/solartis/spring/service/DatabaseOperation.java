@@ -26,9 +26,9 @@ public class DatabaseOperation {
 	public void ConnectionSetup() throws DatabaseException {
 		try {
 		JDBC_DRIVER = "com.mysql.jdbc.Driver";
-		DB_URL = "jdbc:mysql://localhost:3306/general";
+		DB_URL = "jdbc:mysql://192.168.84.225:3700/TestDB_Starr";
 		USER = "root";
-		PASS = "winthegame";
+		PASS = "redhat";
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
