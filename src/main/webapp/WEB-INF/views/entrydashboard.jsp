@@ -24,9 +24,9 @@
 				<div class="btn btn-block btn-primary btn-default1">
 		 		<a href="<c:url value='/meldetails' />">MEL Test Automation</a>
 		 	</div>
-				<input type="submit" class="btn btn-block btn-primary btn-default1" value="Starr-SGL Test Automation">
+				<a href="<c:url value='//meldetails' />" class="btn btn-block btn-success btn-default1">Starr-SGL Test Automation</a>
 			</div>
-
+			
 		</div>
 		<sec:authorize access="hasRole('ADMIN')">
 			<div class="well">
