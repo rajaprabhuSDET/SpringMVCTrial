@@ -16,8 +16,8 @@
  	<div class="generic-container">
 		<%@include file="authheader.jsp" %>
 
-		<div class="well lead">User Registration Form</div>
-	 	<form:form method="POST" modelAttribute="user" class="form-horizontal">
+		<div class="well lead">MEL AUTOMATION INPUTS</div>
+	 	<form:form method="POST" modelAttribute="melinputs" class="form-horizontal">
 			<form:input type="hidden" path="id" id="id"/>
 			
 			<div class="row">
