@@ -42,7 +42,7 @@ public class DroolsConfiguration {
 	    }        
 	    return kieFileSystem;
 	}
-
+	
 	private Resource[] getRuleFiles() throws IOException {
 	    ResourcePatternResolver resourcePatternResolver = new PathMatchingResourcePatternResolver();
 	    return resourcePatternResolver.getResources("classpath*:" + RULES_PATH + "**/*.*");
@@ -61,9 +61,9 @@ public class DroolsConfiguration {
 	    KieBuilder kieBuilder = getKieServices().newKieBuilder(kieFileSystem()); 
 	    kieBuilder.buildAll();
 
-	    return KieServices.Factory.get().newKieContainer(kieRepository.getDefaultReleaseId());
+	    return getKieServices().newKieContainer(kieRepository.getDefaultReleaseId());
 	}
-
+	
 	private KieServices getKieServices() {
 	    return KieServices.Factory.get();
 	}
